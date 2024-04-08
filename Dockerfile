@@ -7,4 +7,4 @@ RUN yarn install --frozen-lockfile
 
 COPY src /app/src
 
-CMD ["node", "./src/app.js"]
+CMD ["node", "./src/index.js"]
