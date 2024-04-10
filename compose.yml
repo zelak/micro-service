@@ -7,3 +7,20 @@ services:
       - '3000:3000'
     volumes:
       - ./configs/.env:/app/configs/.env
+
+  mongo:
+    image: mongo:7
+    restart: always
+    ports:
+      - 27017:27017
+    volumes:
+      - mongodata:/data/db
+    healthcheck:
+      test: echo 'db.runCommand("ping").ok' | mongo localhost:27017/test --quiet
+      interval: 10s
+      timeout: 2s
+      retries: 5
+      start_period: 5s
+
+volumes:
+  mongodata:
